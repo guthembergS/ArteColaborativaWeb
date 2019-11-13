@@ -32,7 +32,7 @@ public class Usuario {
     @Column(name = "VL_ALUGUEL")
     protected double aluguel;
     @Column(name = "TP_USUARIO")
-    protected double tpUsuario;
+    protected String tpUsuario;
     
 	@ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "LOJISTA_ARTESAO", joinColumns = {
@@ -45,11 +45,11 @@ public class Usuario {
     
 	
 	
-    public double getTpUsuario() {
+    public String getTpUsuario() {
 		return tpUsuario;
 	}
 
-	public void setTpUsuario(double tpUsuario) {
+	public void setTpUsuario(String tpUsuario) {
 		this.tpUsuario = tpUsuario;
 	}
 
