@@ -33,7 +33,22 @@ public class Usuario {
     protected double aluguel;
     @Column(name = "TP_USUARIO")
     protected String tpUsuario;
+<<<<<<< HEAD
 	
+=======
+    
+	@ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "LOJISTA_ARTESAO", joinColumns = {
+        @JoinColumn(name = "ID_LOJISTA", referencedColumnName = "ID_USUARIO", nullable = false)},
+            inverseJoinColumns = {
+                @JoinColumn(name = "ID_ARTESAO", referencedColumnName = "ID_USUARIO", nullable = false)
+            }
+    )
+	public List<Usuario> artesaos = new ArrayList<Usuario>();
+    
+	
+	
+>>>>>>> a9057dbc9886c42a86fd7d4b00f0f22c708d1261
     public String getTpUsuario() {
 		return tpUsuario;
 	}
