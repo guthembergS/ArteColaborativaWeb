@@ -20,9 +20,9 @@ public class ProdutoDAOImpl implements ProdutoDAO {
 	
 	@Override
 	public List<Produto> listProdutosUsu(long idUsu) {
-		List<Produto> list =  sessionFactory.getCurrentSession().createQuery("from PRODUTO WHERE CD_ARTESAO = :IDUSU").setParameter(1, idUsu).list();
+		List<Produto> list =  sessionFactory.getCurrentSession().createNativeQuery("SELECT p.* FROM PRODUTO p WHERE ID_ARTESAO = :IDUSU ")
+				.setParameter("IDUSU", idUsu).getResultList();
 		return list;
-
 	}
 
 	@Override
