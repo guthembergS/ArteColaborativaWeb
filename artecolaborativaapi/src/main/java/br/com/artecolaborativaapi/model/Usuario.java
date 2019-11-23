@@ -32,24 +32,13 @@ public class Usuario {
     @Column(name = "VL_ALUGUEL")
     protected double aluguel;
     @Column(name = "TP_USUARIO")
-    protected double tpUsuario;
-    
-	@ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "LOJISTA_ARTESAO", joinColumns = {
-        @JoinColumn(name = "ID_LOJISTA", referencedColumnName = "ID_USUARIO", nullable = false)},
-            inverseJoinColumns = {
-                @JoinColumn(name = "ID_ARTESAO", referencedColumnName = "ID_USUARIO", nullable = false)
-            }
-    )
-	public List<Usuario> artesaos = new ArrayList<Usuario>();
-    
+    protected String tpUsuario;
 	
-	
-    public double getTpUsuario() {
+    public String getTpUsuario() {
 		return tpUsuario;
 	}
 
-	public void setTpUsuario(double tpUsuario) {
+	public void setTpUsuario(String tpUsuario) {
 		this.tpUsuario = tpUsuario;
 	}
 
@@ -59,14 +48,6 @@ public class Usuario {
 
 	public void setMarca(String marca) {
 		this.marca = marca;
-	}
-
-    public List<Usuario> getArtesaos() {
-		return artesaos;
-	}
-
-	public void setArtesaos(List<Usuario> artesaos) {
-		this.artesaos = artesaos;
 	}
 
 	public double getTaxaVenda() {

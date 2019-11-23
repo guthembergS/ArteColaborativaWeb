@@ -8,4 +8,8 @@ public interface UsuarioDAO {
 
 	List<Usuario> listUsuarios();
 
+	long createUsuario(Usuario usu);
+	
+	Usuario getUsuarioId(long idUdu);
+	
 }

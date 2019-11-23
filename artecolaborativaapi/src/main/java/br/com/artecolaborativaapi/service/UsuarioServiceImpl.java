@@ -30,4 +30,16 @@ public class UsuarioServiceImpl implements UsuarioService {
 		
 	}
 	
+	@Override
+	@Transactional
+	public long createUsuario(Usuario usu) {
+		return usuariooDao.createUsuario(usu);
+	}
+	
+	@Override
+	@Transactional
+	public Usuario getUsuarioId(long idUsu) {
+		return usuariooDao.getUsuarioId(idUsu);
+	}
+	
 }

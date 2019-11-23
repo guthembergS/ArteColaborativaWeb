@@ -27,19 +27,20 @@ public class UsuarioController {
 		return ResponseEntity.ok().body(list);
 	}
 	
+	
+	@PostMapping("/api/usuario")
+	public ResponseEntity<?> saveUsuario(@RequestBody Usuario usu){
+		long idUsu = usuarioService.createUsuario(usu);
+		return ResponseEntity.ok().body("Usuario salvo com sucesso - ID_USUARIO: "+idUsu);
+	}
+	
+	@GetMapping("/api/usuario/{idUsuario}")
+	public ResponseEntity<Usuario> getUsuarioId(@PathVariable("idUsuario") long idUsuario){
+		Usuario usu = usuarioService.getUsuarioId(idUsuario);
+		return ResponseEntity.ok().body(usu);
+	}
+	
 	/*
-	@PostMapping("/api/artesao")
-	public ResponseEntity<?> saveArtesao(@RequestBody Artesao artesao){
-		long idArtesao = artesaoService.saveArtesao(artesao);
-		return ResponseEntity.ok().body("Artesao salvo com sucesso - idArtesao: "+idArtesao);
-	}
-	
-	@GetMapping("/api/artesao/{idArtesao}")
-	public ResponseEntity<Artesao> getArtesaoId(@PathVariable("idArtesao") long idArtesao){
-		Artesao artesao = ArtesaoService.getArtesao(idArtesao);
-		return ResponseEntity.ok().body(artesao);
-	}
-	
 	@PostMapping("/api/artesao/{idArtesao}")
 	public ResponseEntity<?> updateArtesao(@PathVariable("idArtesao") long idArtesao,@RequestBody Artesao artesao){
 		artesaoService.updateArtesao(idArtesao, artesao);

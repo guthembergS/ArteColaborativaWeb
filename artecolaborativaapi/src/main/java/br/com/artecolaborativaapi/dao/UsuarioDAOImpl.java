@@ -23,5 +23,16 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 		return list;
 
 	}
+	
+	@Override
+	public long createUsuario(Usuario usu) {
+		sessionFactory.getCurrentSession().save(usu);
+		return usu.getIdUsuario(); 
+	}
+	
+	@Override
+	public Usuario getUsuarioId(long idUdu) {
+		return sessionFactory.getCurrentSession().get(Usuario.class, idUdu);
+	}
 
 }
