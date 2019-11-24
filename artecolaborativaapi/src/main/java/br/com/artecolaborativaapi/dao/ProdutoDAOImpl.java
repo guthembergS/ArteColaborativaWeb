@@ -1,15 +1,16 @@
 package br.com.artecolaborativaapi.dao;
 
+import java.util.Iterator;
 import java.util.List;
 
 import javax.transaction.Transactional;
 
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import br.com.artecolaborativaapi.model.Produto;
-import br.com.artecolaborativaapi.model.Usuario;
 
 @Repository
 @Transactional
@@ -20,15 +21,17 @@ public class ProdutoDAOImpl implements ProdutoDAO {
 	
 	@Override
 	public List<Produto> listProdutosUsu(long idUsu) {
-		List<Produto> list =  sessionFactory.getCurrentSession().createNativeQuery("SELECT p.* FROM PRODUTO p WHERE ID_ARTESAO = :IDUSU ")
-				.setParameter("IDUSU", idUsu).getResultList();
-		return list;
+		 String hql = "from PRODUTO where ID_ARTESAO = :IDARTESAO";
+				  return (List<Produto>) sessionFactory.getCurrentSession().createQuery(hql)
+				   .setParameter("IDARTESAO", idUsu)
+				   .list();
+		
 	}
 
 	@Override
 	public long createProduto(Produto prod) {
-		// TODO Auto-generated method stub
-		return 0;
+		sessionFactory.getCurrentSession().save(prod);
+		return prod.getIdProduto();
 	}
 
 	@Override

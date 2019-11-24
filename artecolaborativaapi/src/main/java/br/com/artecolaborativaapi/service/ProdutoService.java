@@ -8,4 +8,6 @@ public interface ProdutoService {
 
 
 	public List<Produto> listProdutoUsu(long idUsu);
+	
+	public long createProduto(Produto prod);
 }

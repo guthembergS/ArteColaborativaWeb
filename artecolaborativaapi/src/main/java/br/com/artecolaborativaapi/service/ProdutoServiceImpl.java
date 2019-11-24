@@ -24,4 +24,11 @@ public class ProdutoServiceImpl implements ProdutoService {
 	public List<Produto> listProdutoUsu(long idUsu) {
 		return produtoDao.listProdutosUsu(idUsu);
 	}
+
+
+	@Override
+	@Transactional
+	public long createProduto(Produto prod) {
+		return produtoDao.createProduto(prod);
+	}
 }

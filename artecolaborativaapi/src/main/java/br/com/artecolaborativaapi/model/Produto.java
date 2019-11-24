@@ -19,9 +19,8 @@ public class Produto {
 	protected String descricao;
 	@Column(name="PRECO")
 	protected double preco;
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "ID_ARTESAO", referencedColumnName = "ID_USUARIO", nullable = false)
-    protected Usuario artesao;
+	@Column(name="ID_ARTESAO")
+	protected long idArtesao;
 	public Long getIdProduto() {
 		return idProduto;
 	}
@@ -40,11 +39,11 @@ public class Produto {
 	public void setPreco(double preco) {
 		this.preco = preco;
 	}
-	public Usuario getArtesao() {
-		return artesao;
+	public long getIdArtesao() {
+		return idArtesao;
 	}
-	public void setArtesao(Usuario artesao) {
-		this.artesao = artesao;
+	public void setIdArtesao(long idArtesao) {
+		this.idArtesao = idArtesao;
 	}
 	
 }
