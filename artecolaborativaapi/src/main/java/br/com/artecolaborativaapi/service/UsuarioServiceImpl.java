@@ -19,27 +19,32 @@ import br.com.artecolaborativaapi.model.Usuario;
 public class UsuarioServiceImpl implements UsuarioService {
 
 	@Autowired
-	private UsuarioDAO usuariooDao;
+	private UsuarioDAO usuarioDao;
 	
 
 	@Override
 	@Autowired
 	public List<Usuario> listUsuario() {
 		
-		return usuariooDao.listUsuarios();
+		return usuarioDao.listUsuarios();
 		
 	}
 	
 	@Override
 	@Transactional
 	public long createUsuario(Usuario usu) {
-		return usuariooDao.createUsuario(usu);
+		return usuarioDao.createUsuario(usu);
 	}
 	
 	@Override
 	@Transactional
 	public Usuario getUsuarioId(long idUsu) {
-		return usuariooDao.getUsuarioId(idUsu);
+		return usuarioDao.getUsuarioId(idUsu);
 	}
 	
+	@Override
+	@Transactional
+	public Usuario validarUsuario(String email, String senha) {
+		return usuarioDao.validarUsuario(email,senha);
+	}
 }

@@ -12,4 +12,6 @@ public interface UsuarioDAO {
 	
 	Usuario getUsuarioId(long idUdu);
 	
+	Usuario validarUsuario(String email,String senha);
+	
 }

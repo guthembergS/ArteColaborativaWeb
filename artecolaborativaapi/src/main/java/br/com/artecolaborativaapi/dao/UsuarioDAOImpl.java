@@ -8,6 +8,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import br.com.artecolaborativaapi.model.Produto;
 import br.com.artecolaborativaapi.model.Usuario;
 
 @Repository
@@ -33,6 +34,15 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 	@Override
 	public Usuario getUsuarioId(long idUdu) {
 		return sessionFactory.getCurrentSession().get(Usuario.class, idUdu);
+	}
+	
+	@Override
+	public Usuario validarUsuario(String email, String senha) {
+		String hql = "from USUARIO where EMAIL = :EMAIL and SENHA = :SENHA";
+		  return (Usuario) sessionFactory.getCurrentSession().createQuery(hql)
+		   .setParameter("EMAIL", email)
+		   .setParameter("SENHA",senha)
+		   .getSingleResult();
 	}
 
 }

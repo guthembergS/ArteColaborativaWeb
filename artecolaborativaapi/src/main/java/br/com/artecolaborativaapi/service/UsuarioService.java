@@ -11,4 +11,6 @@ public interface UsuarioService {
 	public long createUsuario(Usuario usu);
 	
 	public Usuario getUsuarioId(long idUsu);
+	
+	public Usuario validarUsuario(String email, String senha);
 }

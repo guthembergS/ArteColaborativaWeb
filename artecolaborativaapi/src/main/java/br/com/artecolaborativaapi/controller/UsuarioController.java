@@ -2,6 +2,7 @@ package br.com.artecolaborativaapi.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -38,6 +39,16 @@ public class UsuarioController {
 	public ResponseEntity<Usuario> getUsuarioId(@PathVariable("idUsuario") long idUsuario){
 		Usuario usu = usuarioService.getUsuarioId(idUsuario);
 		return ResponseEntity.ok().body(usu);
+	}
+	
+	@GetMapping("/api/usuario/validar/{email}/{senha}")
+	public ResponseEntity validarUsuario(@PathVariable("email") String email,@PathVariable("senha") String senha){
+		try {
+		Usuario usu = usuarioService.validarUsuario(email,senha);
+		return ResponseEntity.ok().body(usu);
+		}catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Email ou Senha Inválidos!");
+		}
 	}
 	
 	/*
