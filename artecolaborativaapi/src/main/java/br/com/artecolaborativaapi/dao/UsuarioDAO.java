@@ -14,4 +14,8 @@ public interface UsuarioDAO {
 	
 	Usuario validarUsuario(String email,String senha);
 	
+	List<Usuario> listUsuariosTpUsuario(String tpUsu);
+
+	String cadastrarArtesaoColab(long idLojista, long idArtesao);
+	
 }

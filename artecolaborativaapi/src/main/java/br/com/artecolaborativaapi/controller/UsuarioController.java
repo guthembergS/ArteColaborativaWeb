@@ -23,7 +23,7 @@ public class UsuarioController {
 
 	
 	@GetMapping("/api/usuario")
-	public ResponseEntity<List<Usuario>> listArtesao(){
+	public ResponseEntity<List<Usuario>> listUsuarios(){
 		List<Usuario> list = usuarioService.listUsuario();
 		return ResponseEntity.ok().body(list);
 	}
@@ -33,6 +33,12 @@ public class UsuarioController {
 	public ResponseEntity<?> saveUsuario(@RequestBody Usuario usu){
 		long idUsu = usuarioService.createUsuario(usu);
 		return ResponseEntity.ok().body("Usuario salvo com sucesso - ID_USUARIO: "+idUsu);
+	}
+
+	@PostMapping("/api/usuario/cadastrarArtColab/{idLojista}/{idArtesao}")
+	public ResponseEntity cadastrarArtesaoColab(@PathVariable("idLojista") long idLojista,@PathVariable("idArtesao") long idArtesao) {
+		String retorno = usuarioService.cadastrarArtesaoColab(idLojista, idArtesao);
+		return ResponseEntity.status(HttpStatus.OK).body(retorno);
 	}
 	
 	@GetMapping("/api/usuario/{idUsuario}")
@@ -49,6 +55,12 @@ public class UsuarioController {
 		}catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Email ou Senha Inválidos!");
 		}
+	}
+	
+	@GetMapping("/api/usuario/listar/{tpUsuario}")
+	public ResponseEntity<List<Usuario>> listArtesaos(@PathVariable("tpUsuario") String tpUsuario){
+		List<Usuario> list = usuarioService.listUsuarioTpUsuaro(tpUsuario);
+		return ResponseEntity.ok().body(list);
 	}
 	
 	/*

@@ -13,4 +13,9 @@ public interface UsuarioService {
 	public Usuario getUsuarioId(long idUsu);
 	
 	public Usuario validarUsuario(String email, String senha);
+	
+	public List<Usuario> listUsuarioTpUsuaro(String tpUsu);
+	
+	public String cadastrarArtesaoColab(long idLojista, long idArtesao);
+
 }

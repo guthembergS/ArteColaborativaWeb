@@ -44,5 +44,26 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 		   .setParameter("SENHA",senha)
 		   .getSingleResult();
 	}
+	
+	@Override
+	public List<Usuario> listUsuariosTpUsuario(String tpUsuario) {
+		String hql = "from USUARIO where upper(TP_USUARIO) like upper(:TPUSUARIO)";
+		  return (List<Usuario>) sessionFactory.getCurrentSession().createQuery(hql)
+		   .setParameter("TPUSUARIO", tpUsuario)
+		   .list();
+	}
+	
+	@Override
+	public String cadastrarArtesaoColab(long idLojista, long idArtesao) {
+		try{
+			sessionFactory.getCurrentSession().createNativeQuery("Insert into LOJISTA_ARTESAO(ID_LOJISTA,ID_ARTESAO)"
+				+ " values(:IDLOJISTA , :IDARTESAO)")
+		.setParameter("IDLOJISTA", idLojista)
+		.setParameter("IDARTESAO", idArtesao)
+		.executeUpdate();
+		} finally {
+			return "Artesao "+idArtesao+" vinculado a loja do Lojista "+idLojista;
+		}
+	}
 
 }

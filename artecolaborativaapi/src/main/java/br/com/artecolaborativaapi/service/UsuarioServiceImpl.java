@@ -47,4 +47,15 @@ public class UsuarioServiceImpl implements UsuarioService {
 	public Usuario validarUsuario(String email, String senha) {
 		return usuarioDao.validarUsuario(email,senha);
 	}
+	
+	@Override
+	@Transactional
+	public List<Usuario> listUsuarioTpUsuaro(String tpUsu) {
+		return usuarioDao.listUsuariosTpUsuario(tpUsu);
+	}
+
+	@Override
+	public String cadastrarArtesaoColab(long idLojista, long idArtesao) {
+		return usuarioDao.cadastrarArtesaoColab(idLojista, idArtesao);
+	}
 }
